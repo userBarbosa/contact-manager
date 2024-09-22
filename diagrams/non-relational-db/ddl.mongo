@@ -1,0 +1,42 @@
+db={
+  "users": [
+    {
+      "_id": ObjectId("648d1f87e2e4b5f452e8c0a7"),
+      "name": "John Doe",
+      "email": "john@example.com",
+      "password": "hashed_password"
+    }
+  ],
+  "contacts": [
+    {
+      "_id": ObjectId("648d1f87e2e4b5f452e8c0b9"),
+      "name": "Jane Smith",
+      "email": "jane.smith@example.com",
+      "address": "123 Main St",
+      "phone": "+123456789",
+      "group_id": ObjectId("648d1f87e2e4b5f452e8c0c1")
+    }
+  ],
+  "groups": [
+    {
+      "_id": ObjectId("648d1f87e2e4b5f452e8c0c1"),
+      "name": "Friends Group",
+      "members": [
+        {
+          "user_id": ObjectId("648d1f87e2e4b5f452e8c0a7"),
+          "is_admin": true
+        },
+        {
+          "user_id": ObjectId("648d1f87e2e4b5f452e8c0a8"),
+          "is_admin": false
+        }
+      ]
+    }
+  ]
+}
+
+db.users.createIndex({ email: 1 }, { unique: true });
+
+db.contacts.createIndexes([{ group_id: 1 }, { email: 1 }, { phone: 1 }]);
+
+db.groups.createIndex({ "members.user_id": 1 });

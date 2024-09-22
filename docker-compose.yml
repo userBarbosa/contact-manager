@@ -1,0 +1,15 @@
+services:
+  frontend:
+    image: "ctrlmarcws/bromelia-imperial:latest"
+  
+  backend:
+    image: "ctrlmarcws/aranha-fio-de-ouro:latest"
+
+  database:
+    image: mongo
+    restart: always
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: $MONGODB_USER
+      MONGO_INITDB_ROOT_PASSWORD: $MONGODB_PASSWORD
+    env_file:
+      - .env

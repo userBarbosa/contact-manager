@@ -1,0 +1,34 @@
+Table users {
+  id serial [primary key]
+  username varchar(255) [unique, not null]
+  password varchar(255) [not null]
+}
+
+Table groups {
+  id serial [primary key]
+  name varchar(255) [not null]
+  description varchar(255)
+}
+
+Table contacts {
+  id serial [primary key]
+  group_id int 
+  name varchar(255) [not null]
+  address varchar(255)
+  phone varchar(20)
+  email varchar(255)
+}
+
+Table user_groups {
+  user_id int 
+  group_id int 
+  is_admin boolean [default: false]
+  indexes {
+    (user_id, group_id) [pk]
+  }
+}
+
+Ref: contacts.group_id > groups.id // many-to-many
+Ref: user_groups.group_id > groups.id // many-to-one
+Ref: user_groups.user_id > users.id // many-to-one
+
