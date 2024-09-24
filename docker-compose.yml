@@ -21,7 +21,7 @@ services:
     container_name: aranha-fio-de-ouro
     restart: always
     ports:
-      - "4001:4000"
+      - "${API_PORT}:${API_PORT}"
     depends_on:
       - mongo
     env_file:
