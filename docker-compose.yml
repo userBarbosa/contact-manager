@@ -1,15 +1,43 @@
-services:
-  frontend:
-    image: "ctrlmarcws/bromelia-imperial:latest"
-  
-  backend:
-    image: "ctrlmarcws/aranha-fio-de-ouro:latest"
+version: "3.8"
 
-  database:
-    image: mongo
+services:
+  mongo:
+    image: mongo:latest
+    container_name: mongo
     restart: always
-    environment:
-      MONGO_INITDB_ROOT_USERNAME: $MONGODB_USER
-      MONGO_INITDB_ROOT_PASSWORD: $MONGODB_PASSWORD
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo-data:/data/db
+    # environment:
+    #   MONGO_INITDB_ROOT_USERNAME: ${MONGODB_USERNAME}
+    #   MONGO_INITDB_ROOT_PASSWORD: ${MONGODB_PASSWORD}
+
+  api:
+    # image: "ctrlmarcws/aranha-fio-de-ouro:latest"
+    build:
+      context: ../aranha-fio-de-ouro
+      dockerfile: Dockerfile
+    container_name: aranha-fio-de-ouro
+    restart: always
+    ports:
+      - "4001:4000"
+    depends_on:
+      - mongo
     env_file:
       - .env
+
+  front:
+    # image: "ctrlmarcws/bromelia-imperial:latest"
+    build:
+      context: ../bromelia-imperial
+      dockerfile: Dockerfile
+    container_name: bromelia-imperial
+    restart: always
+    ports:
+      - "80:80"
+    depends_on:
+      - api
+
+volumes:
+  mongo-data:

@@ -23,7 +23,7 @@ The project was named based on two fascinating species from the animal kingdom: 
 
 * **Frontend:** Angular.
 * **Backend:** Node.js with Express.
-* **Database:** PostgreSQL or MongoDB
+* **Database:** MongoDB.
 * **Others:** Docker compose, Git.
 * **Support platforms:** Draw.io (diagramming), DockerHub (container storage), GitHub (code storage), DBDiagram.io (relational database diagramming).
 
@@ -45,6 +45,53 @@ The project was named based on two fascinating species from the animal kingdom: 
 * Docker + Docker Compose
 * Node.js 18.x
 * Angular CLI 18.1.4
+
+### Installation
+
+#### 1. Clone the Repositories
+
+Execute the following commands in your terminal to clone the necessary repositories:
+
+```bash
+git clone https://github.com/userBarbosa/contact-manager contact-manager
+git clone https://github.com/userBarbosa/bromelia-imperial bromelia-imperial
+git clone https://github.com/userBarbosa/aranha-fio-de-ouro aranha-fio-de-ouro
+```
+
+Ensure the following folder structure:
+
+```markdown
+/your-project-folder
+│
+├── contact-manager
+│   ├── docker-compose.yml
+│   ├── .env
+│   └── ...
+│
+├── bromelia-imperial
+│   └── ...
+│
+└── aranha-fio-de-ouro
+    └── ...
+```
+
+#### 2. Navigate to the Contact Manager Folder
+
+After cloning the repositories, navigate to the `contact-manager` folder:
+
+```bash
+cd contact-manager
+```
+
+#### 3. Run Docker Compose
+
+Execute the following command to start the services:
+
+```bash
+docker-compose up
+```
+
+This will build and start the containers for the project.
 
 ## Contribution
 
