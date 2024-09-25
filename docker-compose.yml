@@ -1,5 +1,3 @@
-version: "3.8"
-
 services:
   mongo:
     image: mongo:latest
@@ -31,13 +29,15 @@ services:
     # image: "ctrlmarcws/bromelia-imperial:latest"
     build:
       context: ../bromelia-imperial
-      dockerfile: Dockerfile
+      dockerfile: infra/Dockerfile
     container_name: bromelia-imperial
     restart: always
     ports:
-      - "80:80"
+      - "3000:80"
     depends_on:
       - api
+    env_file:
+      - .env
 
 volumes:
   mongo-data:
